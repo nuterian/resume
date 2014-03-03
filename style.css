@@ -1,0 +1,104 @@
+body { margin: 0;
+       padding: 0;
+       background-color: #fff font-size: 12pt;
+       font-family: 'PT Serif', serif;
+       -webkit-font-smoothing: subpixel-antialiased;
+}
+* { box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+/*
+ Primary Rules
+*/
+h1 { font-weight: 400;
+     text-transform: uppercase;
+     margin: 5px 0 10px;
+     font-size: 22pt;
+}
+h2 { color: #ba0018;
+     width: 4cm;
+     font-size: 10pt;
+     font-style: italic;
+     padding-left: 20px;
+}
+h2:first-letter { font-size: 120% }
+h3 { font-size: 10pt;
+     font-weight: bold;
+     margin-bottom: 0;
+}
+h2, h3 { margin-top: 5px }
+a { color: #ba0018;
+    display: block;
+    text-decoration: none;
+}
+.key:first-child { margin-left: 0 }
+.key { margin: 0 15px;
+       position: relative;
+}
+.key::before { content: '◆';
+               position: absolute;
+               left: -20px;
+               color: #555;
+               font-size: 7pt;
+}
+.key:first-child::before { content: '' }
+.section { border-bottom: 1px solid #ddd;
+           padding: 10px 0 15px;
+}
+.section:last-child { border: none }
+.section-text { width: 13cm;
+                font-size: 9pt;
+                line-height: 14pt;
+                margin: 0;
+                padding: 5px 10px 0;
+}
+.subsection { margin: 10px 0 5px }
+.desc { font-size: 8pt }
+.contact-info { font-size: 10pt;
+                text-align: right;
+}
+.emph { font-style: italic }
+.light { color: #888;
+         font-size: 8pt;
+}
+
+/*
+ Float Rules
+*/
+.row:before, .row:after { content: "";
+                          display: table;
+}
+.row:after { clear: both }
+.col { float: left }
+.col-right { float: right }
+
+/*
+ Page Rules
+*/
+.page { width: 21cm;
+        min-height: 29.7cm;
+        margin: 1cm auto;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        background: white;
+        padding: 20px 50px;
+}
+.subpage { padding: 1cm;
+           border: 1px red solid;
+           height: 297mm;
+}
+
+@page { size: A4;
+        margin: 0;
+}
+@media print {
+    .page { margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+    }
+}
