@@ -1,7 +1,7 @@
 body { margin: 0;
        padding: 0;
-       background-color: #fff font-size: 12pt;
-       font-family: 'PT Serif', serif;
+       background-color: #fff font-size: 12px;
+       font-family: "source-sans-pro", sans-serif;
        -webkit-font-smoothing: subpixel-antialiased;
 }
 * { box-sizing: border-box;
@@ -11,34 +11,48 @@ body { margin: 0;
 /*
  Primary Rules
 */
-h1 { font-weight: 400;
-     text-transform: uppercase;
-     margin: 5px 0 10px;
-     font-size: 22pt;
+h1 { font-weight: 300;
+      font-style:italic;
+     margin: 5px 0 0;
+     font-size: 40px;
+     color:#ba0018;
+     padding: 0 10px 10px;
+     border-radius:2px;
+     font-family: 'merriweather', sans-serif;
 }
 h2 { color: #ba0018;
-     width: 4cm;
-     font-size: 10pt;
-     font-style: italic;
+     width: 150px;
+     font-size: 18px;
      padding-left: 20px;
+     font-weight:400;
+     font-family: 'merriweather', sans-serif;
 }
-h2:first-letter { font-size: 120% }
-h3 { font-size: 10pt;
+h2:first-letter { font-size: 150%; }
+h3 { font-size: 18px;
      font-weight: bold;
      margin-bottom: 0;
+     line-height: 28px;
+     font-family: 'merriweather', sans-serif;
 }
 h2, h3 { margin-top: 5px }
 a { color: #ba0018;
-    display: block;
+    display: inline-block;
     text-decoration: none;
+    padding:2px 4px;
+    border-radius:2px;
+    margin-right:-2px;
+}
+a:hover {
+  background-color:#ba0018;
+  color:#fff;
 }
 .key:first-child { margin-left: 0 }
-.key { margin: 0 15px;
+.key { margin: 0 10px;
        position: relative;
 }
 .key::before { content: '◆';
                position: absolute;
-               left: -20px;
+               left: -15px;
                color: #555;
                font-size: 7pt;
 }
@@ -47,20 +61,43 @@ a { color: #ba0018;
            padding: 10px 0 15px;
 }
 .section:last-child { border: none }
-.section-text { width: 13cm;
-                font-size: 9pt;
-                line-height: 14pt;
-                margin: 0;
-                padding: 5px 10px 0;
+.section-text { width: 80%;
+                font-size: 18px;
+                line-height: 24px;
+                margin: 10px 0 10px;
+                padding: 0 10px;
 }
 .subsection { margin: 10px 0 5px }
-.desc { font-size: 8pt }
-.contact-info { font-size: 10pt;
+.desc { font-size: 16px; font-family: "source-sans-pro", sans-serif; color:#444;}
+.contact-info { font-size: 16px;
                 text-align: right;
 }
 .emph { font-style: italic }
-.light { color: #888;
-         font-size: 8pt;
+.light { color: #aaa;letter-spacing:1px;
+         font-size: 14px;
+         line-height:28px;
+         font-family: "source-sans-pro", sans-serif;
+         text-transform:uppercase;
+}
+ul{
+  padding-left:15px;
+}
+
+ul.skills{
+  float:left;
+  width:30%;
+  padding-left:0px;
+  margin: 0 20px 0 0;
+}
+
+ul.skills li{
+  list-style: none;
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+ul.skills li:last-child{
+  margin:0;
 }
 
 /*
@@ -76,10 +113,10 @@ a { color: #ba0018;
 /*
  Page Rules
 */
-.page { width: 21cm;
+.page { width: 1000px;
         min-height: 29.7cm;
         margin: 1cm auto;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+
         background: white;
         padding: 20px 50px;
 }
@@ -91,6 +128,7 @@ a { color: #ba0018;
 @page { size: A4;
         margin: 0;
 }
+
 @media print {
     .page { margin: 0;
             border: initial;
@@ -101,4 +139,38 @@ a { color: #ba0018;
             background: initial;
             page-break-after: always;
     }
+    .page-break{
+      page-break-before: always;
+      padding-top:30px;
+    }
+
+    body { font-size: 12pt;}
+    h1{
+      font-size: 23pt;
+    }
+
+    h2{
+      font-size:10pt;
+      width: 3cm;
+      padding-left: 10px;
+    }
+
+    h3 { font-size: 10pt; line-height:11pt}
+
+    .section-text { font-size: 9pt; line-height: 14pt; }
+
+    .light { font-size: 7.5pt; line-height:12pt; color:#ddd; }
+    
+    .page { width: 21cm }
+    ul {margin:5px 0 0}
+    .section { padding: 5px 0 8px }
+    .section-text { width: 15cm; margin: 5px 0 5px;}
+    .subsection { margin: 5px 0 0 }
+    .desc { font-size: 9pt }
+    
+    .contact-info { font-size: 9pt}
+    
+    ul.skills{margin: 0 10px 0 0;}
+    ul.skills li{ font-size: 9pt; margin-bottom:0}
+
 }
