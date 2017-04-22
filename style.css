@@ -12,7 +12,6 @@ body { margin: 0;
  Primary Rules
 */
 h1 { font-weight: 300;
-      font-style:italic;
      margin: 5px 0 0;
      font-size: 40px;
      color:#ba0018;
@@ -72,7 +71,6 @@ a:hover {
 .contact-info { font-size: 16px;
                 text-align: right;
 }
-.emph { font-style: italic }
 .light { color: #aaa;letter-spacing:1px;
          font-size: 14px;
          line-height:28px;
