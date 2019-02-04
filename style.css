@@ -23,10 +23,10 @@ h2 { color: #ba0018;
      width: 150px;
      font-size: 18px;
      padding-left: 20px;
-     font-weight:400;
+     paddding-top: 12px;
+     font-weight:700;
      font-family: 'Merriweather', serif;
 }
-h2:first-letter { font-size: 150%; }
 h3 { font-size: 18px;
      font-weight: bold;
      margin-bottom: 0;
