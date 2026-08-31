@@ -19,6 +19,11 @@ On every push, GitHub Actions:
 So the one-page format can't silently break: add a bullet too many and CI
 tells you, remove too much and it tells you that too.
 
+The build also emits `og.png` (a render of the top of the resume, used as
+the social preview), a sitemap, and `robots.txt`. Page metadata and the
+schema.org `ProfilePage` / `Person` structured data are generated from
+`resume.yaml`, so they can't drift out of sync with the visible content.
+
 ## Developing
 
 ```sh

@@ -1,11 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// Deployed to GitHub Pages at https://nuterian.github.io/resume/
+// Served from https://jugalm.com/resume/ — the nuterian.github.io URL
+// redirects here, so this is the canonical host for search engines.
 export default defineConfig({
-  site: 'https://nuterian.github.io',
+  site: 'https://jugalm.com',
   base: '/resume',
   output: 'static',
+  trailingSlash: 'always',
+  integrations: [sitemap()],
   build: {
     inlineStylesheets: 'always',
   },

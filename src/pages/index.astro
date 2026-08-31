@@ -11,16 +11,55 @@ const pdfUrl = `${base}/${resume.pdfFilename}`;
 
 const [firstName, ...restName] = resume.name.split(' ');
 
+const pageUrl = new URL(base + '/', Astro.site).href;
+const ogImageUrl = new URL(base + '/og.png', Astro.site).href;
+
+// A short, searchable summary: people look for a name plus a company or a
+// role, so both need to appear early in the title and description.
+const pageTitle = `${resume.name} · ${resume.title} · ${resume.experience[0].company.replace(' · ', ' / ')}`;
+const metaDescription = `${resume.name} is a ${resume.title.toLowerCase()} based in ${resume.location}. ${resume.summary}`;
+
+const skillList = resume.skills.flatMap((group) => group.items);
+const teamNames = resume.experience.flatMap((job) => job.teams?.map((t) => t.name) ?? []);
+
+// Structured data is generated from the same content the page renders, so
+// it can never drift out of sync with what a reader sees.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: resume.name,
-  jobTitle: resume.title,
-  url: 'https://jugalm.com',
-  sameAs: ['https://github.com/nuterian'],
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: resume.location,
+  '@type': 'ProfilePage',
+  url: pageUrl,
+  name: pageTitle,
+  dateModified: new Date().toISOString().slice(0, 10),
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${pageUrl}#person`,
+    name: resume.name,
+    jobTitle: resume.title,
+    description: resume.summary,
+    url: 'https://jugalm.com',
+    email: 'mailto:jugalm9@gmail.com',
+    sameAs: ['https://github.com/nuterian', 'https://jugalm.com'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: resume.location,
+      addressCountry: 'US',
+    },
+    knowsAbout: [...skillList, ...teamNames],
+    worksFor: {
+      '@type': 'Organization',
+      name: 'YouTube',
+      parentOrganization: { '@type': 'Organization', name: 'Google' },
+    },
+    alumniOf: resume.education.map((edu) => ({
+      '@type': 'CollegeOrUniversity',
+      name: edu.school,
+    })),
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: resume.title,
+      occupationLocation: { '@type': 'Place', name: resume.location },
+      skills: skillList.join(', '),
+    },
   },
 };
 ---
@@ -30,14 +69,32 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{resume.name} · {resume.title}</title>
-    <meta name="description" content={resume.summary} />
-    <meta property="og:title" content={`${resume.name} · ${resume.title}`} />
-    <meta property="og:description" content={resume.summary} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="author" content={resume.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href={pageUrl} />
+
     <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={resume.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`Resume of ${resume.name}, ${resume.title}`} />
+    <meta property="profile:first_name" content={firstName} />
+    <meta property="profile:last_name" content={restName.join(' ')} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <meta name="color-scheme" content="light" />
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
-    <link rel="canonical" href={new URL(base + '/', Astro.site)} />
+    <link rel="alternate" type="application/pdf" href={pdfUrl} title={`${resume.name} resume (PDF)`} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

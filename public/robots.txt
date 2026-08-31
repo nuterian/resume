@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jugalm.com/resume/sitemap-index.xml
