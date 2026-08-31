@@ -1,0 +1,112 @@
+# ─────────────────────────────────────────────────────────────
+# All resume content lives in this file. Edit it, push, and CI
+# rebuilds the site + PDF, failing if it no longer fits on one
+# page, or no longer fills one.
+# ─────────────────────────────────────────────────────────────
+
+name: Jugal Manjeshwar
+title: Software Engineer
+location: San Francisco Bay Area
+pdfFilename: jugal-manjeshwar-resume.pdf
+
+summary: >-
+  Software engineer at YouTube since 2015. Works mostly on TV and web
+  clients, along with the services and data behind them. Comfortable
+  moving between the interface and the systems that feed it.
+
+contacts:
+  - label: jugalm9@gmail.com
+    href: mailto:jugalm9@gmail.com
+  - label: jugalm.com
+    href: https://jugalm.com
+  - label: 201.920.0729
+    href: tel:+12019200729
+
+experience:
+  - company: Google · YouTube
+    role: Software Engineer
+    period: Jul 2015 – Present
+    teams:
+      - name: YouTube TV
+        period: 2020 – Present
+        bullets:
+          - >-
+            Worked on Multiview, which lets people watch several live streams
+            at once. Helped build the TV client for it, from an early
+            prototype through to launch.
+          - >-
+            Work on how the app performs on low-memory smart TVs and
+            streaming boxes: how quickly it starts, how menus move, and how
+            soon playback reacts to a button press.
+          - >-
+            Build features across the whole path, from the client to the
+            service that feeds it and the data behind it. Most of it is done
+            alongside design, product, and platform teams.
+      - name: Trust & Safety
+        period: 2015 – 2020
+        bullets:
+          - >-
+            Helped rebuild how viewers report videos, both the flow they see
+            and the services behind it, so the teams reviewing reports had
+            clearer signals to work from.
+          - >-
+            Built the messages that tell creators when a video breaks
+            Community Guidelines, what happens to it, and how to appeal.
+            Much of that work was getting the wording right with policy
+            teams.
+  - company: New York University
+    role: Research Assistant, Full-Stack Engineer
+    period: 2014
+    bullets:
+      - >-
+        Built EmotionTracker, an app for the study <i>Lingering emotion in
+        the experience of beauty</i>. It ran each step of the experiment and
+        recorded the results, so the data no longer had to be gathered by
+        hand.
+
+skills:
+  - group: Languages
+    items:
+      - TypeScript / JavaScript
+      - Java
+      - C++
+      - Python
+      - SQL
+  - group: Frontend
+    items:
+      - TV & web clients
+      - Component architecture
+      - Rendering & performance
+  - group: Backend
+    items:
+      - Frontend services & APIs
+      - Storage & data models
+      - Experiments & A/B tests
+  - group: Craft
+    items:
+      - Interaction & UI design
+      - Figma
+      - Data visualization
+
+education:
+  - degree: M.S. Computer Science
+    school: New York University
+    detail: Courant Institute of Mathematical Sciences
+    period: 2013 – 2015
+  - degree: B.E. Computer Engineering
+    school: University of Pune
+    period: 2008 – 2012
+
+honors:
+  - title: SEARCC International Schools Software Competition
+    subtitle: Algorithmic programming
+    period: 2007
+    description: >-
+      Went to the national finals in a team of three representing our
+      region, and finished second.
+  - title: CodeChef Gamer's Challenge
+    subtitle: Game development
+    period: 2009
+    description: >-
+      Built a game prototype in under 48 hours, and picked up an honorable
+      mention for Best Looking Game.

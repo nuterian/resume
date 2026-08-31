@@ -1,0 +1,137 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/fraunces';
+import '../styles/global.css';
+import Section from '../components/Section.astro';
+import Job from '../components/Job.astro';
+import { resume } from '../data/resume';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pdfUrl = `${base}/${resume.pdfFilename}`;
+
+const [firstName, ...restName] = resume.name.split(' ');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: resume.name,
+  jobTitle: resume.title,
+  url: 'https://jugalm.com',
+  sameAs: ['https://github.com/nuterian'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: resume.location,
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{resume.name} · {resume.title}</title>
+    <meta name="description" content={resume.summary} />
+    <meta property="og:title" content={`${resume.name} · ${resume.title}`} />
+    <meta property="og:description" content={resume.summary} />
+    <meta property="og:type" content="profile" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="canonical" href={new URL(base + '/', Astro.site)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="masthead">
+        <div>
+          <h1><strong>{firstName}</strong> {restName.join(' ')}</h1>
+          <p class="role">
+            {resume.title}<span class="sep">◆</span>{resume.location}
+          </p>
+        </div>
+        <ul class="contacts">
+          {
+            resume.contacts.map((contact) => (
+              <li>
+                <a href={contact.href}>{contact.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </header>
+
+      <Section title="Profile" class="summary">
+        <p>{resume.summary}</p>
+      </Section>
+
+      <Section title="Experience">
+        {resume.experience.map((job) => <Job job={job} />)}
+      </Section>
+
+      <Section title="Skills" class="skills">
+        <dl>
+          {
+            resume.skills.map((skillGroup) => (
+              <>
+                <dt>{skillGroup.group}</dt>
+                <dd>
+                  {skillGroup.items.map((item, i) => (
+                    <>
+                      {i > 0 && <span class="sep">◆</span>}
+                      {item}
+                    </>
+                  ))}
+                </dd>
+              </>
+            ))
+          }
+        </dl>
+      </Section>
+
+      <Section title="Education" class="education">
+        {
+          resume.education.map((edu) => (
+            <div class="edu-row">
+              <span>
+                <span class="degree">{edu.degree}</span>
+                <span class="sep">◆</span>
+                <span class="school">{edu.school}</span>
+                {edu.detail && <span class="detail">{edu.detail}</span>}
+              </span>
+              <span class="when">{edu.period}</span>
+            </div>
+          ))
+        }
+      </Section>
+
+      {
+        resume.honors.length > 0 && (
+          <Section title="Honors" class="honors">
+            {resume.honors.map((honor) => (
+              <div class="honor">
+                <h4>{honor.title}</h4>
+                <p class="honor-sub">
+                  {honor.subtitle}
+                  <span class="sep">◆</span>
+                  {honor.period}
+                </p>
+                <p class="honor-desc">{honor.description}</p>
+              </div>
+            ))}
+          </Section>
+        )
+      }
+    </main>
+
+    <a class="pdf-link" href={pdfUrl} download aria-label="Download resume as PDF">
+      <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <g class="dl-arrow">
+          <path d="M12 3.5v10.5" />
+          <path d="m7.4 9.6 4.6 4.6 4.6-4.6" />
+        </g>
+        <path class="dl-tray" d="M4.75 19.5h14.5" />
+      </svg>
+      <span>PDF</span>
+    </a>
+  </body>
+</html>

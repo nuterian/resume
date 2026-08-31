@@ -1,0 +1,662 @@
+/* ───────────────────────────────────────────────────────────
+   Design tokens. Physical units (in/pt) are shared by screen
+   and print so the on-screen sheet is exactly what prints.
+   Light-only by design; the red serif identity is the brand.
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --page-pad-x: 0.66in;
+  --page-pad-y: 0.55in;
+  --rail: 1.32in;
+  --rail-gap: 0.3in;
+
+  --bg: #fffdfa;
+  --sheet: #fffdfa;
+  --ink: #221f1c;
+  --ink-muted: #55504a;
+  --ink-faint: #97908a;
+  --accent: #ba0018;
+  --accent-deep: #8e0013;
+  --rule: #e8e4de;
+  --shadow: 0 1px 2px rgb(60 40 30 / 0.08), 0 14px 44px rgb(60 40 30 / 0.14);
+
+  --serif: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --sans: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 9.5pt;
+  line-height: 1.45;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── The sheet ─────────────────────────────────────────── */
+.sheet {
+  padding: var(--page-pad-y) var(--page-pad-x);
+  background: var(--sheet);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  padding-bottom: 12pt;
+  border-bottom: 2pt solid var(--accent);
+}
+
+.masthead h1 {
+  font-family: var(--serif);
+  font-size: 27pt;
+  font-weight: 340;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--accent-deep);
+}
+
+.masthead h1 strong {
+  font-weight: 680;
+}
+
+.masthead .role {
+  margin-top: 5pt;
+  font-size: 8pt;
+  font-weight: 550;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.masthead .role .sep {
+  color: var(--accent);
+  margin: 0 0.6em;
+  letter-spacing: 0;
+}
+
+.contacts {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+  font-size: 9pt;
+  line-height: 1.7;
+  font-variant-numeric: tabular-nums;
+}
+
+.contacts a {
+  padding: 0 3px;
+  margin-right: -3px;
+}
+
+/* ── Label-rail sections ───────────────────────────────── */
+section {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  column-gap: var(--rail-gap);
+  padding: 9pt 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+section > h2 {
+  font-family: var(--serif);
+  font-size: 11.5pt;
+  font-weight: 620;
+  color: var(--accent);
+  line-height: 1.3;
+  padding-top: 1pt;
+}
+
+.section-body > * + * {
+  margin-top: 9pt;
+}
+
+.summary p {
+  font-family: var(--serif);
+  font-size: 10.25pt;
+  font-weight: 380;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+/* ── Small caps date/meta style (heritage) ─────────────── */
+.when {
+  color: var(--ink-faint);
+  font-size: 7.5pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Experience ────────────────────────────────────────── */
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.job-head h3 {
+  font-family: var(--serif);
+  font-size: 12.5pt;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.job-head h3 .role {
+  font-family: var(--sans);
+  font-size: 9.5pt;
+  font-weight: 480;
+  color: var(--ink-muted);
+}
+
+.job-head h3 .sep {
+  color: var(--accent);
+  font-weight: 400;
+  margin: 0 0.45em;
+}
+
+.job + .job {
+  margin-top: 11pt;
+}
+
+.team {
+  margin-top: 8pt;
+}
+
+.team-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.team-head h4 {
+  font-size: 10pt;
+  font-weight: 650;
+}
+
+.bullets {
+  margin-top: 3pt;
+  padding-left: 0;
+  list-style: none;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 13pt;
+  margin-top: 3pt;
+  color: var(--ink-muted);
+}
+
+.bullets li::before {
+  content: '◆';
+  position: absolute;
+  left: 1pt;
+  top: 0.16em;
+  font-size: 5pt;
+  color: var(--accent);
+  opacity: 0.75;
+}
+
+/* ── Skills ────────────────────────────────────────────── */
+.skills dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 16pt;
+  row-gap: 5pt;
+}
+
+.skills dt {
+  font-weight: 640;
+  font-size: 9.25pt;
+}
+
+.skills dd {
+  color: var(--ink-muted);
+}
+
+.skills .sep {
+  color: var(--accent);
+  font-size: 5pt;
+  vertical-align: 0.22em;
+  margin: 0 0.85em;
+  opacity: 0.75;
+}
+
+/* ── Education ─────────────────────────────────────────── */
+.education .edu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.education .edu-row + .edu-row {
+  margin-top: 5pt;
+}
+
+.education .degree {
+  font-family: var(--serif);
+  font-size: 10.25pt;
+  font-weight: 600;
+}
+
+.education .school {
+  color: var(--ink-muted);
+}
+
+.education .detail {
+  color: var(--ink-faint);
+  font-size: 8.75pt;
+  display: block;
+  margin-top: 1pt;
+}
+
+.education .sep {
+  color: var(--accent);
+  font-size: 5pt;
+  vertical-align: 0.22em;
+  margin: 0 0.6em;
+  opacity: 0.75;
+}
+
+/* ── Honors: two-up, so short entries don't cost a column ─ */
+.honors .section-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 22pt;
+}
+
+/* Subgrid keeps title / subtitle / description on shared baselines
+   even when one title wraps and the other doesn't. */
+.honor {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  align-content: start;
+}
+
+.honor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.honor h4 {
+  font-family: var(--serif);
+  font-size: 9.75pt;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.honor-sub {
+  font-size: 7.25pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  opacity: 0.85;
+  margin-top: 1.5pt;
+}
+
+.honor-sub .sep {
+  font-size: 5pt;
+  vertical-align: 0.2em;
+  margin: 0 0.5em;
+}
+
+.honor-desc {
+  color: var(--ink-muted);
+  margin-top: 2pt;
+}
+
+/* ── Screen-only download button ───────────────────────── */
+.pdf-link {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.95rem 0.6rem 0.8rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  box-shadow:
+    0 2px 6px rgb(140 0 18 / 0.28),
+    0 10px 24px rgb(140 0 18 / 0.28);
+}
+
+.dl-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+/* ── Screen sizing ──────────────────────────────────────
+   The design is authored once, at print scale. On screen it is
+   zoomed up so the type lands at a comfortable reading size for
+   the device, and given a measure-based width instead of a page
+   width — the resume is part of the page here, not a sheet on it.
+   ─────────────────────────────────────────────────────── */
+@media screen {
+  .sheet {
+    zoom: 1.34;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 3.25rem 1.75rem 5rem;
+  }
+}
+
+/* ── Narrow screens: rail collapses ────────────────────── */
+@media screen and (max-width: 900px) {
+  .sheet {
+    zoom: 1.3;
+    max-width: none;
+    padding: 2rem 0.95rem 4.5rem;
+  }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .contacts {
+    text-align: left;
+  }
+
+  section {
+    grid-template-columns: 1fr;
+    row-gap: 6pt;
+  }
+
+  .skills dl {
+    grid-template-columns: 1fr;
+    row-gap: 2pt;
+  }
+
+  .skills dd {
+    margin-bottom: 5pt;
+  }
+
+  /* Two-up honors are too cramped to stack side by side on a phone. */
+  .honors .section-body {
+    display: block;
+  }
+
+  .honor {
+    display: block;
+  }
+
+  .honor + .honor {
+    margin-top: 9pt;
+  }
+}
+
+/* ── Phones: shrink the display type, stack the head rows ──
+   At print scale the masthead and the date-aligned head rows
+   assume a page-width column; on a phone they have to reflow or
+   they run off the side. */
+@media screen and (max-width: 640px) {
+  .sheet {
+    zoom: 1.22;
+    padding: 1.75rem 0.9rem 4.5rem;
+  }
+
+  .masthead h1 {
+    font-size: 19.5pt;
+  }
+
+  .masthead .role {
+    white-space: normal;
+    font-size: 7.5pt;
+    letter-spacing: 0.11em;
+    line-height: 1.6;
+  }
+
+  .job-head,
+  .team-head,
+  .education .edu-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .job-head h3 {
+    font-size: 11.5pt;
+  }
+
+  .education .edu-row + .edu-row {
+    margin-top: 7pt;
+  }
+}
+
+/* ── Print: same sheet, exactly one Letter page ────────── */
+@page {
+  size: letter;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .sheet {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+  }
+
+  .pdf-link {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Web polish & motion.
+
+   Everything below is scoped to `screen`, so the printed page
+   and the generated PDF are byte-identical to what they were
+   before any of it existed. Motion additionally sits behind
+   `prefers-reduced-motion: no-preference` — which means the
+   elements have no animation (and so no starting opacity: 0)
+   when motion is reduced, rather than being animated to a
+   visible state. Nothing can render blank.
+   ═══════════════════════════════════════════════════════════ */
+
+@media screen {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: rgb(186 0 24 / 0.16);
+  }
+
+  a {
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Download button: lifts toward the cursor, the arrow drops into
+     the tray, and the whole thing presses down on click. */
+  .pdf-link {
+    transition:
+      transform 220ms cubic-bezier(0.2, 0.7, 0.3, 1),
+      box-shadow 220ms ease,
+      background-color 200ms ease;
+  }
+
+  .pdf-link:hover {
+    background: var(--accent-deep);
+    transform: translateY(-3px);
+    box-shadow:
+      0 3px 8px rgb(140 0 18 / 0.32),
+      0 16px 32px rgb(140 0 18 / 0.34);
+  }
+
+  .pdf-link:active {
+    transform: translateY(-1px) scale(0.98);
+    transition-duration: 90ms;
+  }
+
+  .pdf-link:hover .dl-tray {
+    transform: scaleX(1.12);
+  }
+
+  .dl-arrow,
+  .dl-tray {
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    transform-origin: center;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(9px);
+    }
+  }
+
+  /* The red rule draws itself in: a sheet-coloured cover retracts
+     to the right, revealing the border underneath. */
+  @keyframes unveil {
+    to {
+      transform: scaleX(0);
+    }
+  }
+
+  .sheet {
+    animation: sheet-in 620ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  .masthead,
+  section,
+  .pdf-link {
+    animation: rise-in 560ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  .masthead {
+    position: relative;
+    animation-delay: 90ms;
+  }
+
+  .masthead::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2pt;
+    height: 2pt;
+    background: var(--sheet);
+    transform-origin: right;
+    animation: unveil 900ms cubic-bezier(0.2, 0.7, 0.3, 1) 420ms both;
+  }
+
+  /* Each section follows the one above it. */
+  section:nth-of-type(1) { animation-delay: 200ms; }
+  section:nth-of-type(2) { animation-delay: 270ms; }
+  section:nth-of-type(3) { animation-delay: 340ms; }
+  section:nth-of-type(4) { animation-delay: 410ms; }
+  section:nth-of-type(5) { animation-delay: 480ms; }
+  section:nth-of-type(n + 6) { animation-delay: 550ms; }
+
+  .pdf-link {
+    animation-delay: 700ms;
+  }
+
+  /* A slow, occasional bob — enough life to draw the eye back to it
+     without ever becoming a distraction. */
+  @keyframes arrow-bob {
+    0%,
+    82%,
+    100% {
+      transform: translateY(0);
+    }
+    88% {
+      transform: translateY(2.4px);
+    }
+    94% {
+      transform: translateY(0);
+    }
+  }
+
+  .dl-arrow {
+    animation: arrow-bob 4.5s ease-in-out 1.6s infinite;
+  }
+
+  .pdf-link:hover .dl-arrow {
+    animation: none;
+    transform: translateY(3.2px);
+  }
+}
