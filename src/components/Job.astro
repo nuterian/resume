@@ -1,0 +1,43 @@
+---
+import type { Resume } from '../data/schema';
+
+interface Props {
+  job: Resume['experience'][number];
+}
+
+const { job } = Astro.props;
+---
+
+<article class="job">
+  <div class="job-head">
+    <h3>
+      {job.company}<span class="sep">·</span><span class="role">{job.role}</span>
+    </h3>
+    <span class="when">{job.period}</span>
+  </div>
+  {
+    job.bullets && (
+      <ul class="bullets">
+        {job.bullets.map((bullet) => (
+          <li set:html={bullet} />
+        ))}
+      </ul>
+    )
+  }
+  {
+    job.teams?.map((team) => (
+      <div class="team">
+        <div class="team-head">
+          <h4>{team.name}</h4>
+          <span class="when">{team.period}</span>
+        </div>
+        {team.blurb && <p>{team.blurb}</p>}
+        <ul class="bullets">
+          {team.bullets.map((bullet) => (
+            <li set:html={bullet} />
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</article>
