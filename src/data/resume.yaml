@@ -16,10 +16,13 @@ summary: >-
 
 contacts:
   - label: [removed]
+    icon: mail
     href: mailto:[removed]
   - label: jugalm.com
+    icon: globe
     href: https://jugalm.com
   - label: [removed]
+    icon: phone
     href: tel:[removed]
 
 experience:

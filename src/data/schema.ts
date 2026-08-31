@@ -15,6 +15,7 @@ export const resumeSchema = z.object({
     .array(
       z.object({
         label: z.string(),
+        icon: z.enum(['mail', 'globe', 'phone']).optional(),
         href: z
           .string()
           .url()
