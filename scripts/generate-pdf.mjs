@@ -114,6 +114,23 @@ try {
   await writeFile(outPath, pdf);
   await writeFile(join(root, 'public', pdfFilename), pdf);
   console.log(`✓ Wrote 1-page PDF to ${outPath} — content fills ${pct}% of the page`);
+
+  // Social preview card: the top of the actual resume, so a shared link
+  // shows the real thing rather than a generic placeholder.
+  const og = await browser.newPage({ viewport: { width: 1200, height: 630 } });
+  await og.goto(`http://127.0.0.1:${port}${BASE}/`, { waitUntil: 'networkidle' });
+  await og.evaluate(() => document.fonts.ready);
+  await og.addStyleTag({
+    content: `.sheet { zoom: 1.5 !important; max-width: none !important;
+                       padding: 44px 56px !important; }
+              .pdf-link { display: none !important; }
+              * { animation: none !important; transition: none !important; }`,
+  });
+  const ogShot = await og.screenshot({ type: 'png' });
+  await writeFile(join(dist, 'og.png'), ogShot);
+  await writeFile(join(root, 'public', 'og.png'), ogShot);
+  await og.close();
+  console.log('✓ Wrote social card to dist/og.png');
 } finally {
   await browser.close();
   server.close();
