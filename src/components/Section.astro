@@ -1,20 +1,14 @@
 ---
-import Icon from './Icon.astro';
-
 interface Props {
   title: string;
-  icon?: 'profile' | 'experience' | 'skills' | 'education' | 'honors';
   class?: string;
 }
 
-const { title, icon, class: className } = Astro.props;
+const { title, class: className } = Astro.props;
 ---
 
 <section class={className}>
-  <h2>
-    {icon && <Icon name={icon} class="section-mark" />}
-    <span>{title}</span>
-  </h2>
+  <h2>{title}</h2>
   <div class="section-body">
     <slot />
   </div>

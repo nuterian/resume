@@ -21,10 +21,8 @@ summary: >-
 
 contacts:
   - label: jugalm9@gmail.com
-    icon: mail
     href: mailto:jugalm9@gmail.com
   - label: 201.920.0729
-    icon: phone
     href: tel:+12019200729
 
 experience:
