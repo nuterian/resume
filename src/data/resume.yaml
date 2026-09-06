@@ -41,10 +41,6 @@ experience:
             Work on how the app performs on low-memory smart TVs and
             streaming boxes: how quickly it starts, how menus move, and how
             soon playback reacts to a button press.
-          - >-
-            Build features across the whole path, from the client to the
-            service that feeds it and the data behind it. Most of it is done
-            alongside design, product, and platform teams.
       - name: Trust & Safety
         period: 2015 – 2020
         bullets:
