@@ -104,7 +104,9 @@ const jsonLd = {
         <div>
           <h1><strong>{firstName}</strong> {restName.join(' ')}</h1>
           <p class="role">
-            {resume.title}<span class="sep">◆</span>{resume.location}
+            {resume.title}<span class="sep">◆</span>{resume.location}<span
+              class="sep">◆</span
+            ><a class="role-site" href={resume.website.href}>{resume.website.label}</a>
           </p>
         </div>
         <ul class="contacts">

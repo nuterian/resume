@@ -9,6 +9,11 @@ title: Software Engineer
 location: San Francisco Bay Area
 pdfFilename: jugal-manjeshwar-resume.pdf
 
+# Shown in the masthead line beside the location, not in the contact list.
+website:
+  label: jugalm.com
+  href: https://jugalm.com
+
 summary: >-
   Software engineer at YouTube since 2015. Works mostly on TV and web
   clients, along with the services and data behind them. Comfortable
@@ -18,9 +23,6 @@ contacts:
   - label: jugalm9@gmail.com
     icon: mail
     href: mailto:jugalm9@gmail.com
-  - label: jugalm.com
-    icon: globe
-    href: https://jugalm.com
   - label: 201.920.0729
     icon: phone
     href: tel:+12019200729

@@ -11,6 +11,7 @@ export const resumeSchema = z.object({
   location: z.string(),
   summary: z.string(),
   pdfFilename: z.string(),
+  website: z.object({ label: z.string(), href: z.string().url() }),
   contacts: z
     .array(
       z.object({
