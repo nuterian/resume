@@ -123,9 +123,17 @@ try {
   await og.addStyleTag({
     content: `.sheet { zoom: 1.5 !important; max-width: none !important;
                        padding: 44px 56px !important; }
-              .pdf-link { display: none !important; }
-              * { animation: none !important; transition: none !important; }`,
+              .pdf-link { display: none !important; }`,
   });
+  // Jump every entrance animation to its finished state and drop the looping
+  // ones (a `* { animation: none }` rule would miss the pseudo-elements that
+  // carry some of them), so the card shows the settled page, not a frame
+  // caught mid-motion.
+  await og.evaluate(() =>
+    document.getAnimations().forEach((a) =>
+      a.effect.getTiming().iterations === Infinity ? a.cancel() : a.finish(),
+    ),
+  );
   const ogShot = await og.screenshot({ type: 'png' });
   await writeFile(join(dist, 'og.png'), ogShot);
   await writeFile(join(root, 'public', 'og.png'), ogShot);
