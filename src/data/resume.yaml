@@ -21,10 +21,8 @@ summary: >-
 
 contacts:
   - label: [removed]
-    icon: mail
     href: mailto:[removed]
   - label: [removed]
-    icon: phone
     href: tel:[removed]
 
 experience:

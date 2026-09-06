@@ -4,7 +4,6 @@ import '@fontsource-variable/fraunces/opsz.css';
 import '../styles/global.css';
 import Section from '../components/Section.astro';
 import Job from '../components/Job.astro';
-import Icon from '../components/Icon.astro';
 import { resume } from '../data/resume';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -113,25 +112,22 @@ const jsonLd = {
           {
             resume.contacts.map((contact) => (
               <li>
-                <a href={contact.href}>
-                  {contact.icon && <Icon name={contact.icon} class="contact-icon" />}
-                  <span>{contact.label}</span>
-                </a>
+                <a href={contact.href}>{contact.label}</a>
               </li>
             ))
           }
         </ul>
       </header>
 
-      <Section title="Profile" icon="profile" class="summary">
+      <Section title="Profile" class="summary">
         <p>{resume.summary}</p>
       </Section>
 
-      <Section title="Experience" icon="experience">
+      <Section title="Experience">
         {resume.experience.map((job) => <Job job={job} />)}
       </Section>
 
-      <Section title="Skills" icon="skills" class="skills">
+      <Section title="Skills" class="skills">
         <dl>
           {
             resume.skills.map((skillGroup) => (
@@ -151,7 +147,7 @@ const jsonLd = {
         </dl>
       </Section>
 
-      <Section title="Education" icon="education" class="education">
+      <Section title="Education" class="education">
         {
           resume.education.map((edu) => (
             <div class="edu-row">
@@ -169,7 +165,7 @@ const jsonLd = {
 
       {
         resume.honors.length > 0 && (
-          <Section title="Honors" icon="honors" class="honors">
+          <Section title="Honors" class="honors">
             {resume.honors.map((honor) => (
               <div class="honor">
                 <h4>{honor.title}</h4>
