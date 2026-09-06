@@ -128,6 +128,19 @@ a:hover {
   letter-spacing: 0;
 }
 
+/* Inherits the uppercase metadata treatment of the line it sits in, and
+   only picks up the accent on hover so it does not compete with the name. */
+.role-site {
+  color: inherit;
+  padding: 0 2px;
+  margin-right: -2px;
+}
+
+.role-site:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
 .contacts {
   list-style: none;
   padding: 0;
