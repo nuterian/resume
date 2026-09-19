@@ -203,6 +203,13 @@ const jsonLd = {
         var n = navigator;
         if (location.hostname !== 'jugalm.com' || n.webdriver || !n.sendBeacon) return;
         if (n.doNotTrack === '1' || window.doNotTrack === '1' || n.globalPrivacyControl === true) return;
+        /* The author's off switch: ?nocount on any page of jugalm.com, ?count to undo.
+           One key for the whole domain, kept on the device that asked, never sent. */
+        try {
+          var q = new URLSearchParams(location.search);
+          if (q.has('nocount')) localStorage.setItem('nocount', '1'); else if (q.has('count')) localStorage.removeItem('nocount');
+          if (localStorage.getItem('nocount') === '1') return;
+        } catch (e) {}
         try {
           n.sendBeacon('https://stats.jugalm.com/api/send', new Blob([JSON.stringify({ type: 'event', payload: {
             website: '0a907e1e-2783-4515-b2bf-d5a2b7d8db57', hostname: location.hostname, url: location.pathname,
