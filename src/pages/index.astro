@@ -192,5 +192,24 @@ const jsonLd = {
       </svg>
       <span>PDF</span>
     </a>
+    {/* One POST per page view, and nothing else: the same count jugalm.com keeps, to the
+        same self-hosted Umami under the same website id, so the whole domain reads as one
+        site and this page is the row /resume/. No cookies, no storage, no identifier; Do
+        Not Track and Global Privacy Control are honoured; a local build and the Playwright
+        run that prints the PDF are not visits. text/plain is load-bearing: sendBeacon always
+        sends credentials, and a credentialed preflight refuses Umami's wildcard allow-origin. */}
+    <script is:inline>
+      (function () {
+        var n = navigator;
+        if (location.hostname !== 'jugalm.com' || n.webdriver || !n.sendBeacon) return;
+        if (n.doNotTrack === '1' || window.doNotTrack === '1' || n.globalPrivacyControl === true) return;
+        try {
+          n.sendBeacon('https://stats.jugalm.com/api/send', new Blob([JSON.stringify({ type: 'event', payload: {
+            website: '0a907e1e-2783-4515-b2bf-d5a2b7d8db57', hostname: location.hostname, url: location.pathname,
+            title: document.title, referrer: document.referrer, screen: screen.width + 'x' + screen.height, language: n.language
+          } })], { type: 'text/plain;charset=UTF-8' }));
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>
