@@ -37,8 +37,7 @@ const jsonLd = {
     jobTitle: resume.title,
     description: resume.summary,
     url: 'https://jugalm.com',
-    email: 'mailto:[removed]',
-    sameAs: ['https://github.com/nuterian', 'https://jugalm.com'],
+    sameAs: ['https://github.com/nuterian', 'https://jugalm.com', ...resume.contacts.map((c) => c.href)],
     address: {
       '@type': 'PostalAddress',
       addressLocality: resume.location,
